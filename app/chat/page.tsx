@@ -5,9 +5,7 @@ import ChatInterface from '@/components/ChatInterface'
 import ChatSidebar from '@/components/ChatSidebar'
 
 export default async function ChatPage() {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
-
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
 
